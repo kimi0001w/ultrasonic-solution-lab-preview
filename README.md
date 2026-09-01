@@ -2,6 +2,6 @@
 
 精電舎電子工業株式会社サイト向けページのたたき台です。公式サイトではありません。
 
-- 閲覧用 URL: GitHub Pages で公開します
+- 閲覧用 URL: https://kimi0001w.github.io/ultrasonic-solution-lab-preview/
 - 検索エンジンには載せない設定（`noindex` / `robots.txt`）にしています
 - お問い合わせフォームは見た目のモックです（送信されません）

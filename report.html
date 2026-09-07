@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>超音波技術 用途・業界 図解レポート | 超音波ソリューション研究所</title>
+<meta name="description" content="精電舎電子工業のパワー超音波が生かせる用途と業界を、原理・技術層・業界マトリクスから整理した図解レポートです。">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{
+  --main:#b5004b;
+  --main-dark:#8f003c;
+  --ink:#222;
+  --muted:#666;
+  --line:#ddd;
+  --bg:#fff;
+  --pale:#f7f7f7;
+  --green:#0b7a56;
+  --blue:#0068b7;
+  --amber:#9a6a00;
+  --max:1120px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Meiryo","Yu Gothic",sans-serif;font-size:15px;line-height:1.85}
+a{color:var(--blue)}
+p{margin:0 0 1em}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+.preview-banner{background:#222;color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700}
+.preview-banner span{font-weight:400;opacity:.85;margin-left:.6em}
+.preview-banner a{color:#fff;margin-left:14px}
+.header{border-bottom:1px solid #dcdcdc;background:#fff}
+.header-main{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding:18px 18px 16px}
+.logo-mark{font-family:Arial,sans-serif;font-weight:800;letter-spacing:.04em;font-size:24px;color:var(--main);line-height:1}
+.logo-sub{font-size:12px;color:#555;margin-top:4px}
+.kicker{color:var(--main);font-size:12px;font-weight:700;letter-spacing:.08em}
+.page-title{border-top:3px solid var(--main);background:#f8f8f8;border-bottom:1px solid #ddd}
+.page-title .wrap{padding:28px 18px}
+h1{font-size:32px;line-height:1.35;margin:0 0 10px}
+.lead{font-size:16px;color:#444;max-width:900px}
+.meta{font-size:12px;color:#666;margin-top:8px}
+.toc{display:flex;flex-wrap:wrap;gap:8px 18px;padding:16px 0 8px;font-size:13px}
+.toc a{color:#333;text-decoration:none;border-bottom:1px solid #ddd}
+.toc a:hover{color:var(--main);border-color:var(--main)}
+main{padding:36px 0 64px}
+section{margin-bottom:48px}
+h2{font-size:24px;margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid #ddd}
+h3{font-size:18px;margin:0 0 10px}
+.note{color:#555;margin-bottom:16px}
+.stats{display:flex;flex-wrap:wrap;gap:28px;margin:8px 0 8px}
+.stat b{display:block;font-size:28px;line-height:1.2;color:var(--ink)}
+.stat span{font-size:12px;color:#666}
+.stat.green b{color:var(--green)}
+.stat.blue b{color:var(--blue)}
+.stat.amber b{color:var(--amber)}
+.tree{width:100%;max-width:760px;height:auto;display:block;margin:8px 0 4px}
+.layers{display:grid;gap:6px}
+.layer{display:grid;grid-template-columns:52px 1fr 1.1fr;gap:12px;padding:10px 12px;align-items:center}
+.layer.core{background:var(--main);color:#fff}
+.layer.near{background:#f0f0f0}
+.layer.explore{background:#fafafa;border:1px solid var(--line)}
+.layer .lab{font-weight:700}
+.layer .role{font-size:13px;opacity:.9}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin:8px 0 12px;font-size:13px}
+.swatch{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:middle}
+.matrix-wrap{overflow-x:auto}
+.matrix{display:grid;gap:3px;min-width:640px}
+.matrix .head,.matrix .lab{
+  font-size:11px;color:#666;text-align:center;padding:0 0 4px
+}
+.matrix .lab{
+  text-align:left;background:none;border:0;cursor:pointer;color:#555;padding:4px 4px 4px 0
+}
+.matrix .lab:hover{color:var(--main)}
+.matrix .cell{
+  min-height:28px;border:1px solid #e5e5e5;font-size:11px;font-weight:700;cursor:pointer;background:#fafafa;color:#333
+}
+.matrix .cell.empty{opacity:.35;background:#f4f4f4}
+.matrix .cell.established{background:#cfe8dc}
+.matrix .cell.adjacent{background:#d5e6f5}
+.matrix .cell.exploratory{background:#f3e4c4}
+.matrix .cell.selected{outline:2px solid var(--main);outline-offset:-1px}
+.cell-detail{background:#fafafa;border:1px solid var(--line);padding:12px 14px;margin-top:12px}
+.cell-detail h3{font-size:15px;margin:0 0 6px}
+.cell-detail li{margin:0 0 4px}
+.caption{font-size:12px;color:#888;margin-top:8px}
+.charts{display:grid;grid-template-columns:1.5fr .9fr;gap:28px;align-items:start}
+.bar-row{display:grid;grid-template-columns:64px 1fr 28px;gap:8px;align-items:center;margin-bottom:6px;font-size:12px}
+.bar-track{display:flex;height:14px;background:#f0f0f0;overflow:hidden}
+.bar-track span{display:block;height:100%}
+.bar-track .established{background:var(--green)}
+.bar-track .adjacent{background:var(--blue)}
+.bar-track .exploratory{background:var(--amber)}
+.donut-wrap{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.donut-legend{font-size:13px}
+.quad-axis{display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:6px}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.quad article{border:1px solid var(--line);padding:14px;min-height:128px;background:#fff}
+.quad h3{font-size:15px;color:var(--main);margin:0 0 8px}
+.quad p{margin:0;font-size:13px;color:#444}
+.fit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.fit article{padding-top:10px}
+.fit .good{border-top:3px solid var(--green)}
+.fit .check{border-top:3px solid var(--blue)}
+.fit .hard{border-top:3px solid var(--amber)}
+.fit h3{font-size:16px;margin:0 0 8px}
+.fit .good h3{color:var(--green)}
+.fit .check h3{color:var(--blue)}
+.fit .hard h3{color:var(--amber)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.flow-step{position:relative;border:1px solid var(--line);background:#fff;padding:14px 12px;min-height:120px}
+.flow-step:not(:last-child)::after{
+  content:"";position:absolute;right:-8px;top:50%;
+  border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:8px solid var(--main)
+}
+.flow-step .n{display:inline-block;background:var(--main);color:#fff;font-weight:700;padding:1px 7px;margin-bottom:8px;font-size:12px}
+.flow-step h3{font-size:15px;margin:0 0 4px}
+.flow-step p{margin:0;font-size:13px;color:#555}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.pill{
+  border:1px solid #ccc;background:#fafafa;padding:4px 10px;font-size:13px;cursor:pointer
+}
+.pill.active{background:var(--main);border-color:var(--main);color:#fff}
+.search{width:100%;max-width:420px;border:1px solid #bbb;padding:10px;font:inherit;margin:4px 0 12px}
+.count{font-size:13px;color:#666;margin-bottom:8px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid #ddd;padding:9px 10px;text-align:left;vertical-align:top}
+th{background:#f0f0f0}
+tbody tr:nth-child(even){background:#fafafa}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.dot.established{background:var(--green)}
+.dot.adjacent{background:var(--blue)}
+.dot.exploratory{background:var(--amber)}
+.callout{border:1px solid var(--line);border-left:5px solid var(--main);padding:16px 18px;background:#fff}
+.callout strong{display:block;margin-bottom:4px}
+.footer{background:#333;color:#fff;padding:24px 0;font-size:13px}
+.footer a{color:#fff}
+@media (max-width:900px){
+  h1{font-size:26px}
+  .charts,.fit,.flow,.layer,.quad{grid-template-columns:1fr}
+  .layer{grid-template-columns:1fr}
+  .flow-step:not(:last-child)::after{display:none}
+}
+@media print{
+  .preview-banner,.filters,.search{display:none}
+  .matrix .cell{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="preview-banner">公開前のたたき台です<span>精電舎電子工業の公式サイトではありません。</span><a href="./index.html">研究所ページへ</a></div>
+<header class="header"><div class="wrap header-main">
+  <div>
+    <div class="logo-mark">SEIDENSHA</div>
+    <div class="logo-sub">精電舎電子工業株式会社　超音波ソリューション研究所</div>
+  </div>
+  <div class="kicker">INTERNAL STUDY / 2026.09</div>
+</div></header>
+<div class="page-title"><div class="wrap">
+  <div class="kicker">図解レポート</div>
+  <h1>超音波技術が生かせる用途と業界</h1>
+  <p class="lead">超音波は万能ではない。界面か刃先か媒質だけを短時間で動かすときに効く。精電舎のパワー超音波は、溶着・金属接合・切断・密封を核に、15業界65用途へ広げられる。研究所は「核の延長」と「浮揚・ジェットの探索」の二層で動く。</p>
+  <p class="meta">産業用パワー超音波の社内検討　／　診断画像・魚群探知・非破壊検査は対象外　／　2026年9月</p>
+  <nav class="toc" aria-label="目次">
+    <a href="#why">なぜ効くか</a>
+    <a href="#layers">技術の置き場</a>
+    <a href="#matrix">業界 × 技術</a>
+    <a href="#charts">業界別の厚み</a>
+    <a href="#priority">どこから手を付けるか</a>
+    <a href="#fit">向く・要評価・難しい</a>
+    <a href="#flow">相談から装置化</a>
+    <a href="#list">用途の詳細</a>
+  </nav>
+</div></div>
+<main class="wrap">
+  <div class="stats" id="stats"></div>
+
+  <section id="why">
+    <h2>なぜ効くか</h2>
+    <p class="note">熱を全体にかけず、接合面・刃先・周囲の媒質にエネルギーを集める。だから接着剤、はんだ、広域ヒートシールの代替候補になる。</p>
+    <svg class="tree" viewBox="0 0 760 292" role="img" aria-label="パワー超音波が三つの物理効果に分かれ、溶着・切断・非接触操作につながる図">
+      <rect x="250" y="8" width="260" height="44" rx="4" fill="#b5004b"/>
+      <text x="380" y="35" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">パワー超音波 15–40 kHz</text>
+      <line x1="380" y1="52" x2="380" y2="78" stroke="#333"/>
+      <line x1="130" y1="78" x2="630" y2="78" stroke="#333"/>
+      <line x1="130" y1="78" x2="130" y2="96" stroke="#333"/>
+      <line x1="380" y1="78" x2="380" y2="96" stroke="#333"/>
+      <line x1="630" y1="78" x2="630" y2="96" stroke="#333"/>
+      <rect x="40" y="96" width="180" height="40" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+      <text x="130" y="121" text-anchor="middle" fill="#222" font-size="12">界面の摩擦熱</text>
+      <rect x="290" y="96" width="180" height="40" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+      <text x="380" y="121" text-anchor="middle" fill="#222" font-size="12">刃先の振動</text>
+      <rect x="540" y="96" width="180" height="40" rx="4" fill="#f0f0f0" stroke="#ddd"/>
+      <text x="630" y="121" text-anchor="middle" fill="#222" font-size="12">音響流・放射圧</text>
+      <line x1="130" y1="136" x2="130" y2="154" stroke="#333"/>
+      <line x1="380" y1="136" x2="380" y2="154" stroke="#333"/>
+      <line x1="630" y1="136" x2="630" y2="154" stroke="#333"/>
+      <rect x="40" y="154" width="180" height="56" rx="4" fill="#fafafa" stroke="#ddd"/>
+      <text x="130" y="176" text-anchor="middle" fill="#222" font-size="12" font-weight="700">溶着・金属接合・密封</text>
+      <text x="130" y="194" text-anchor="middle" fill="#666" font-size="11">接着剤・はんだを減らす</text>
+      <rect x="290" y="154" width="180" height="56" rx="4" fill="#fafafa" stroke="#ddd"/>
+      <text x="380" y="176" text-anchor="middle" fill="#222" font-size="12" font-weight="700">切断</text>
+      <text x="380" y="194" text-anchor="middle" fill="#666" font-size="11">付着・ほつれ・粉塵を抑える</text>
+      <rect x="540" y="154" width="180" height="56" rx="4" fill="#fafafa" stroke="#ddd"/>
+      <text x="630" y="176" text-anchor="middle" fill="#222" font-size="12" font-weight="700">浮揚・ジェット・分散</text>
+      <text x="630" y="194" text-anchor="middle" fill="#666" font-size="11">非接触・局所操作を探索</text>
+      <line x1="130" y1="210" x2="130" y2="228" stroke="#333"/>
+      <line x1="380" y1="210" x2="380" y2="228" stroke="#333"/>
+      <line x1="630" y1="210" x2="630" y2="228" stroke="#333"/>
+      <text x="130" y="248" text-anchor="middle" fill="#888" font-size="11">自動車 / 包装 / 医療 / 電子 / 電池</text>
+      <text x="380" y="248" text-anchor="middle" fill="#888" font-size="11">食品 / 繊維 / 複合材</text>
+      <text x="630" y="248" text-anchor="middle" fill="#888" font-size="11">半導体 / 医薬 / 研究</text>
+      <text x="380" y="278" text-anchor="middle" fill="#999" font-size="10">熱を全体にかけず、界面か刃先か媒質だけを動かす</text>
+    </svg>
+  </section>
+
+  <section id="layers">
+    <h2>技術の置き場</h2>
+    <p class="note">上段ほど今の事業に近く、下段ほどソリューション研究所の探索テーマになる。</p>
+    <div class="layers">
+      <div class="layer core"><div class="lab">核</div><div>溶着・金属接合・切断・密封</div><div class="role">量産相談が今すぐ来る。既存装置の延長</div></div>
+      <div class="layer near"><div class="lab">近傍</div><div>低熱加工・新素材の条件出し</div><div class="role">材料は決まったが工法が未定。ラボの主戦場</div></div>
+      <div class="layer explore"><div class="lab">探索</div><div>浮揚・ジェット・分散・振動応用</div><div class="role">工法自体が未確立。原理確認から伴走する</div></div>
+    </div>
+  </section>
+
+  <section id="matrix">
+    <h2>業界 × 技術</h2>
+    <p class="note">セルの色は、その交差点でもっとも実績に近い成熟度。数字は用途数。クリックすると下の一覧が絞られる。</p>
+    <div class="legend">
+      <span><i class="swatch" style="background:#cfe8dc"></i>実績寄り</span>
+      <span><i class="swatch" style="background:#d5e6f5"></i>検討余地</span>
+      <span><i class="swatch" style="background:#f3e4c4"></i>研究探索</span>
+    </div>
+    <div class="matrix-wrap"><div class="matrix" id="matrix-grid"></div></div>
+    <div class="cell-detail" id="cell-detail" hidden></div>
+    <p class="caption">空欄はこの整理に含めていない交差点であり、適用不可能を意味しない。出典: 精電舎の実績業界・技術テーマと産業用パワー超音波の一般適用を突合。</p>
+  </section>
+
+  <section id="charts">
+    <div class="charts">
+      <div>
+        <h3>業界別の用途数（成熟度の内訳）</h3>
+        <div id="bars"></div>
+        <p class="caption">用途数（件）・同一用途の重複なし・2026-09</p>
+      </div>
+      <div>
+        <h3>成熟度の構成</h3>
+        <div class="donut-wrap" id="donut"></div>
+        <p class="note">検討余地が最多。材料開発の上流で工法未定の相談が、研究所の本丸になる。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="priority">
+    <h2>どこから手を付けるか</h2>
+    <p class="note">相談が装置化につながりやすく、既存技術との距離も説明できる順に置く。</p>
+    <div class="quad-axis"><span>既存技術に近い</span><span>既存技術から遠い</span></div>
+    <div class="quad">
+      <article>
+        <h3>伸ばす</h3>
+        <p>電池箔・タブ接合 / 医療の低熱精密接合 / モノマテリアル包装のシール。需要が明確で、溶着・金属接合・密封の延長で評価に入れる。</p>
+      </article>
+      <article>
+        <h3>仕掛ける</h3>
+        <p>超音波浮揚とジェット。半導体・医薬・食品の非接触操作。差別化になるが、原理確認から装置化まで長い。</p>
+      </article>
+      <article>
+        <h3>横展開する</h3>
+        <p>食品・複合材の切断 / CFRTP・バイオプラの条件出し。カッターと溶着の既存技術を、新しい材料へ移す。</p>
+      </article>
+      <article>
+        <h3>急がない</h3>
+        <p>分散・乳化や細胞破砕はラボ用途として残す。本業の接合・切断から距離があり、装置化の物語がまだ細い。</p>
+      </article>
+    </div>
+    <p class="caption">上段ほど市場の引きが強い。左ほど精電舎の既存工法に近い。</p>
+  </section>
+
+  <section id="fit">
+    <h2>向く課題、要評価、難しい課題</h2>
+    <div class="fit">
+      <article class="good">
+        <h3>向く</h3>
+        <p>熱影響を局所化したい / 接着剤・ネジを減らしたい / 短時間で接合・切断・密封したい / 切断面をきれいにしたい</p>
+      </article>
+      <article class="check">
+        <h3>評価が要る</h3>
+        <p>材料ばらつきが大きい / 形状が複雑・厚い / 必要強度や密封が高い / 量産速度が厳しい / 既存設備とつなぐ</p>
+      </article>
+      <article class="hard">
+        <h3>難しい</h3>
+        <p>振動が伝わりにくい構造 / 加工範囲が大きすぎる / 効果が材料特性と合わない / 他工法が明らかに有利</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="flow">
+    <h2>相談から装置化</h2>
+    <div class="flow">
+      <div class="flow-step"><span class="n">1</span><h3>課題受付</h3><p>材料と制約</p></div>
+      <div class="flow-step"><span class="n">2</span><h3>一次確認</h3><p>適用可否</p></div>
+      <div class="flow-step"><span class="n">3</span><h3>追加確認</h3><p>NDA・試料</p></div>
+      <div class="flow-step"><span class="n">4</span><h3>評価・試作</h3><p>条件出し</p></div>
+      <div class="flow-step"><span class="n">5</span><h3>装置化</h3><p>量産・設備</p></div>
+    </div>
+    <p class="caption">超音波ソリューション研究所の想定フロー。一次確認は受付後3営業日以内が目安。</p>
+  </section>
+
+  <section id="list">
+    <h2>用途の詳細</h2>
+    <p class="note">上のマトリクスで交差点を選ぶか、ここで絞り込む。</p>
+    <div class="filters" id="industry-filters"></div>
+    <div class="filters" id="method-filters"></div>
+    <div class="filters" id="maturity-filters"></div>
+    <input class="search" id="search" type="search" placeholder="用途・材料・課題で検索">
+    <div class="count" id="count"></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>業界</th><th>アプリケーション</th><th>技術</th><th>対象材料</th><th>超音波が効く理由</th><th>成熟度</th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="callout">
+    <strong>使い方</strong>
+    マトリクスの色が濃い交差点から評価試作の候補を拾い、空白は「今は書かない」だけと読む。診断用超音波や探傷は別市場なので、このレポートの射程に入れていません。
+  </div>
+</main>
+<footer class="footer"><div class="wrap">社内検討用の図解レポートです。公式サイトの掲載稿ではありません。　<a href="./index.html">超音波ソリューション研究所ページへ</a></div></footer>
+<script>
+const APPS = [
+  {industry:"自動車・モビリティ",application:"ランプハウジング・内装パネルの樹脂溶着",method:"溶着",materials:"PP, ABS, PC, PMMA",advantage:"短時間で気密接合。外観を傷めず界面だけを溶着できる",maturity:"実績寄り"},
+  {industry:"自動車・モビリティ",application:"ワイヤーハーネス端子の金属接合",method:"金属接合",materials:"銅、アルミ、被覆電線",advantage:"はんだ・フラックス不要。低熱で電気抵抗を抑えやすい",maturity:"実績寄り"},
+  {industry:"自動車・モビリティ",application:"センサー・ECU筐体の気密溶着",method:"溶着",materials:"PBT, PA, PPS",advantage:"接着剤レスで気密。硬化待ちがなく工程を短くできる",maturity:"実績寄り"},
+  {industry:"自動車・モビリティ",application:"エアバッグ・キャビンフィルターの不織布溶着",method:"溶着",materials:"PP不織布、フィルターメディア",advantage:"縫製レス。連続生産とリーク抑制に向く",maturity:"実績寄り"},
+  {industry:"自動車・モビリティ",application:"内装表皮・シンサレートのスポット溶着",method:"溶着",materials:"不織布、発泡材、表皮材",advantage:"ハンド作業でもエネルギー制御で品質を揃えやすい",maturity:"実績寄り"},
+  {industry:"自動車・モビリティ",application:"成形品のゲートカット・トリミング",method:"切断",materials:"各種熱可塑性樹脂",advantage:"切り粉が少なく断面がきれい。ロボット搭載が容易",maturity:"実績寄り"},
+  {industry:"自動車・モビリティ",application:"CFRTP構造部材の接合",method:"溶着",materials:"CFRTP, GFRTP",advantage:"熱影響を局所化し、軽量化部材の接合工法を探索できる",maturity:"検討余地"},
+  {industry:"医療・ライフサイエンス",application:"輸液バッグ・血液バッグのシール",method:"密封",materials:"PVC, PP, PE, EVA",advantage:"短時間密封。内容液やフィルムへの熱履歴を抑えやすい",maturity:"実績寄り"},
+  {industry:"医療・ライフサイエンス",application:"フィルターハウジング・ダイアライザの溶着",method:"溶着",materials:"PC, PP, PS",advantage:"気密とパーティクル抑制を両立しやすい",maturity:"実績寄り"},
+  {industry:"医療・ライフサイエンス",application:"カテーテル・チューブの接合",method:"溶着",materials:"PU, PVC, PEBAX",advantage:"接着剤レス。内腔変形を抑えた局所加熱が期待できる",maturity:"検討余地"},
+  {industry:"医療・ライフサイエンス",application:"診断カートリッジ・マイクロ流路の溶着",method:"低熱加工",materials:"PMMA, COC, COP, フィルム",advantage:"流路潰れを避けた精密接合。試薬・センサへの熱を局所化",maturity:"検討余地"},
+  {industry:"医療・ライフサイエンス",application:"シングルユースバッグ・培養容器の密封",method:"密封",materials:"多層フィルム、EVA",advantage:"無溶剤でクリーン工程に載せやすい",maturity:"検討余地"},
+  {industry:"医療・ライフサイエンス",application:"薬液・試料の非接触ハンドリング",method:"浮揚",materials:"液滴、小型容器",advantage:"汚染・吸着を避ける搬送として研究段階から検討できる",maturity:"研究探索"},
+  {industry:"衛生用品",application:"紙おむつ・生理用品の不織布連続溶着",method:"溶着",materials:"PP不織布、伸縮フィルム",advantage:"高速連続。縫製・接着剤を減らせる",maturity:"実績寄り"},
+  {industry:"衛生用品",application:"マスク・防護服の耳ひも・プリーツ溶着",method:"溶着",materials:"不織布、弾性紐",advantage:"高速スポット。衛生的で消耗品の量産に向く",maturity:"実績寄り"},
+  {industry:"衛生用品",application:"ウェットシート包装のシール・溶断",method:"密封",materials:"積層フィルム",advantage:"シールとカットを同時に行い、液漏れを抑えやすい",maturity:"実績寄り"},
+  {industry:"日用品・消費財",application:"ボトル・キャップ・ポンプディスペンサーの溶着",method:"溶着",materials:"PE, PP, エラストマー",advantage:"気密と外観を両立し、サイクルタイムを短くできる",maturity:"実績寄り"},
+  {industry:"日用品・消費財",application:"浄水器・掃除機などのフィルター溶着",method:"溶着",materials:"PP, 不織布, メッシュ",advantage:"溶剤レスで濾過性能を維持したまま接合できる",maturity:"実績寄り"},
+  {industry:"日用品・消費財",application:"家電ハウジングのボスカシメ",method:"溶着",materials:"ABS, PC, ボス構造",advantage:"ネジレス組立。表面傷を抑えやすい",maturity:"実績寄り"},
+  {industry:"日用品・消費財",application:"玩具・文具の安全溶着",method:"溶着",materials:"各種樹脂成形品",advantage:"接着剤の揮発成分を使わず、組立を短時間化できる",maturity:"実績寄り"},
+  {industry:"エレクトロニクス",application:"コネクタ・センサー筐体の溶着",method:"溶着",materials:"PBT, LCP, PA",advantage:"電子部品への熱影響を局所化できる",maturity:"実績寄り"},
+  {industry:"エレクトロニクス",application:"ケーブル端子・バスバーの金属接合",method:"金属接合",materials:"銅、アルミ、錫めっき",advantage:"はんだレス・低抵抗。フラックス汚染を避けられる",maturity:"実績寄り"},
+  {industry:"エレクトロニクス",application:"スピーカー振動板・音響部品の接合",method:"溶着",materials:"フィルム、樹脂フレーム",advantage:"薄物の精密溶着。接着剤のはみ出しを減らせる",maturity:"検討余地"},
+  {industry:"エレクトロニクス",application:"FPC・フレキ端子の接合",method:"金属接合",materials:"銅箔、フレキシブル基板",advantage:"熱ダメージを抑えた電気接合として評価余地がある",maturity:"検討余地"},
+  {industry:"エレクトロニクス",application:"精密部品の非接触保持・組立",method:"浮揚",materials:"小型電子部品、光学素子",advantage:"接触傷とパーティクルを減らすハンドリングの探索",maturity:"研究探索"},
+  {industry:"バッテリー・エネルギー",application:"電極タブとバスバーの金属接合",method:"金属接合",materials:"アルミ箔、銅箔、ニッケル",advantage:"箔に対して熱影響が小さく、電気抵抗を抑えやすい",maturity:"実績寄り"},
+  {industry:"バッテリー・エネルギー",application:"積層箔同士の集電接合",method:"金属接合",materials:"極薄アルミ箔・銅箔",advantage:"多枚箔の一括接合。溶接スパッタを避けやすい",maturity:"検討余地"},
+  {industry:"バッテリー・エネルギー",application:"パウチ外装のシール",method:"密封",materials:"アルミラミネートフィルム",advantage:"熱封止の代替・補助として、電解液近傍の熱を評価できる",maturity:"検討余地"},
+  {industry:"バッテリー・エネルギー",application:"セパレータ・電極シートの切断",method:"切断",materials:"セパレータ、塗工シート",advantage:"バリ・粉落ちを抑えた切断として条件探索できる",maturity:"検討余地"},
+  {industry:"バッテリー・エネルギー",application:"燃料電池MEA・樹脂フレームの接合",method:"低熱加工",materials:"MEA, ガスケット, 樹脂フレーム",advantage:"膜を傷めにくい低熱接合として探索できる",maturity:"検討余地"},
+  {industry:"バッテリー・エネルギー",application:"電極スラリーの分散",method:"分散・乳化",materials:"活物質、バインダ、溶媒",advantage:"凝集破壊と均一分散。量産装置化の前にラボ評価しやすい",maturity:"研究探索"},
+  {industry:"包装・容器",application:"パウチ・チューブの連続シール溶断",method:"密封",materials:"PE, PP, 積層フィルム",advantage:"高速。ヒートシールより熱履歴を短くできる場合がある",maturity:"実績寄り"},
+  {industry:"包装・容器",application:"スパウト・口栓の溶着",method:"溶着",materials:"PE/PP成形品とフィルム",advantage:"異形状でも気密接合しやすい",maturity:"実績寄り"},
+  {industry:"包装・容器",application:"ブリスター・トレイの蓋材シール",method:"密封",materials:"PET, PVC, 蓋フィルム",advantage:"局所溶着で内容物への熱を抑制できる",maturity:"実績寄り"},
+  {industry:"包装・容器",application:"モノマテリアル包装のシール条件探索",method:"密封",materials:"単一素材フィルム、再生樹脂",advantage:"リサイクル適合物の接合窓を、材料開発段階から評価できる",maturity:"検討余地"},
+  {industry:"包装・容器",application:"紙と樹脂の異種接合",method:"溶着",materials:"紙、PEコート紙、バイオプラ",advantage:"接着剤削減と易解体設計を両立する工法探索",maturity:"検討余地"},
+  {industry:"食品",application:"パン・ケーキ・チーズのスライス",method:"切断",materials:"粘性・多孔質食品",advantage:"刃への付着が少なく、断面がつぶれにくい",maturity:"実績寄り"},
+  {industry:"食品",application:"冷凍食品・練り物の切断",method:"切断",materials:"冷凍品、水産練り製品",advantage:"変形を抑えて定寸カットしやすい",maturity:"実績寄り"},
+  {industry:"食品",application:"食品包装フィルムのシール",method:"密封",materials:"食品用フィルム",advantage:"内容物を熱しすぎない密封。溶断との組み合わせも可能",maturity:"実績寄り"},
+  {industry:"食品",application:"食肉・菓子バーの定寸カット自動化",method:"切断",materials:"食肉、バー状菓子、シート菓子",advantage:"ロボット搭載で衛生的な連続カットを組める",maturity:"検討余地"},
+  {industry:"食品",application:"食材の非接触搬送",method:"浮揚",materials:"小型食材、包装前製品",advantage:"接触汚染を避けるハンドリングとして探索できる",maturity:"研究探索"},
+  {industry:"新素材・環境対応",application:"バイオプラスチックの溶着条件出し",method:"溶着",materials:"PLA, PHA, バイオPE",advantage:"熱分解しやすい材料を、低熱・短時間で接合できるか評価できる",maturity:"検討余地"},
+  {industry:"新素材・環境対応",application:"再生樹脂・フィラー入り樹脂の溶着",method:"溶着",materials:"再生PP、ガラス繊維入り樹脂",advantage:"材料ばらつきに対する条件安定化がラボ向き",maturity:"検討余地"},
+  {industry:"新素材・環境対応",application:"CFRP / CFRTPの切断",method:"切断",materials:"炭素繊維複合材",advantage:"粉塵と熱影響を抑えた切断として評価できる",maturity:"検討余地"},
+  {industry:"新素材・環境対応",application:"新フィルム・バリア材のシール評価",method:"密封",materials:"高バリアフィルム、蒸着フィルム",advantage:"材料開発の上流から工法可否をスクリーニングできる",maturity:"検討余地"},
+  {industry:"繊維・アパレル",application:"不織布・フェルトの切断と端末処理",method:"切断",materials:"不織布、フェルト、積層布",advantage:"ほつれを抑え、カットと溶着的な端末処理を同時に狙える",maturity:"実績寄り"},
+  {industry:"繊維・アパレル",application:"防水衣料・アウトドアウェアの縫製代替溶着",method:"溶着",materials:"合成繊維、防水フィルム",advantage:"針穴がなく、防水と軽量化に寄与する",maturity:"検討余地"},
+  {industry:"繊維・アパレル",application:"産業用フィルターメディアの接合",method:"溶着",materials:"耐熱繊維、不織布",advantage:"縫糸レスで濾過リークを抑制できる",maturity:"検討余地"},
+  {industry:"航空宇宙",application:"内装樹脂・二次構造の接合",method:"溶着",materials:"PEI, PEEK, 複合材",advantage:"軽量化と、接着剤の硬化待ち削減が期待できる",maturity:"検討余地"},
+  {industry:"航空宇宙",application:"配線ハーネスの金属接合",method:"金属接合",materials:"銅、アルミ軽量配線",advantage:"はんだレス。振動環境での電気接合として評価できる",maturity:"検討余地"},
+  {industry:"航空宇宙",application:"複合材プリプレグの切断",method:"切断",materials:"プリプレグ、アラミド",advantage:"切れ味と粉塵抑制を、既存カッター技術の延長で評価できる",maturity:"検討余地"},
+  {industry:"半導体・精密製造",application:"樹脂キャリア・トレイの溶着",method:"溶着",materials:"PS, PC, PEEK",advantage:"クリーン工程で接着剤アウトガスを避けられる",maturity:"検討余地"},
+  {industry:"半導体・精密製造",application:"微小部品の非接触搬送",method:"浮揚",materials:"チップ、レンズ、ガラス",advantage:"接触傷・汚染回避。装置化前の原理確認に向く",maturity:"研究探索"},
+  {industry:"半導体・精密製造",application:"局所洗浄・異物除去",method:"ジェット",materials:"周辺部材、金型、樹脂部品",advantage:"薬液を減らした精密洗浄として探索できる",maturity:"研究探索"},
+  {industry:"半導体・精密製造",application:"金型離型・粉体充填の振動アシスト",method:"振動応用",materials:"粉体、樹脂、金型",advantage:"摩擦低減や充填不良改善など、溶着以外の振動利用",maturity:"研究探索"},
+  {industry:"化粧品・化成品",application:"ボトル・ポンプ・コンパクト容器の溶着",method:"溶着",materials:"AS, ABS, PP, アクリル",advantage:"高級外観を損なわず、気密と組立速度を稼げる",maturity:"実績寄り"},
+  {industry:"化粧品・化成品",application:"チューブ・サシェのシール",method:"密封",materials:"積層チューブ、アルミ",advantage:"内容物への熱履歴を抑えつつ密封できる",maturity:"実績寄り"},
+  {industry:"化粧品・化成品",application:"乳液・顔料分散系の乳化",method:"分散・乳化",materials:"油水、顔料、ナノ粒子",advantage:"界面活性剤削減の処方探索。ラボスケールから始めやすい",maturity:"研究探索"},
+  {industry:"建材・住設",application:"配管継手・バルブの樹脂溶着",method:"溶着",materials:"PVC, PP, PE",advantage:"気密接合を短時間で行える。工場内組立に向きやすい",maturity:"検討余地"},
+  {industry:"建材・住設",application:"換気フィルター・住設樹脂部品の溶着",method:"溶着",materials:"不織布、PP成形品",advantage:"接着剤VOCを減らしつつ量産できる",maturity:"検討余地"},
+  {industry:"建材・住設",application:"断熱材・発泡材の切断",method:"切断",materials:"発泡樹脂、複合断熱材",advantage:"崩れにくい断面。粉塵を抑えた切断として評価できる",maturity:"検討余地"},
+  {industry:"研究装置・ラボ",application:"新材料の接合可否スクリーニング",method:"溶着",materials:"未知樹脂、積層材、複合材",advantage:"装置仕様が固まる前に、適用可能性を一次評価できる",maturity:"検討余地"},
+  {industry:"研究装置・ラボ",application:"超音波ジェットによる微細加工アシスト",method:"ジェット",materials:"樹脂、金属薄膜、塗膜",advantage:"バリ取り、剥離、局所加工など溶着以外の使い方を探索できる",maturity:"研究探索"},
+  {industry:"研究装置・ラボ",application:"粉末・液滴の超音波浮揚操作",method:"浮揚",materials:"粉体、液滴、小型試料",advantage:"容器レスの反応・計測。非接触操作の原理確認に向く",maturity:"研究探索"},
+  {industry:"研究装置・ラボ",application:"細胞破砕・抽出の前処理",method:"分散・乳化",materials:"バイオ試料、植物組織",advantage:"抽出効率の向上。条件とダメージの両立が評価対象",maturity:"研究探索"}
+];
+const METHODS = ["溶着","金属接合","切断","密封","低熱加工","分散・乳化","浮揚","ジェット","振動応用"];
+const METHOD_SHORT = {溶着:"溶着",金属接合:"金属",切断:"切断",密封:"密封",低熱加工:"低熱","分散・乳化":"分散",浮揚:"浮揚",ジェット:"ジェット",振動応用:"振動"};
+const INDUSTRY_SHORT = {
+  "自動車・モビリティ":"自動車","医療・ライフサイエンス":"医療","衛生用品":"衛生","日用品・消費財":"日用品",
+  "エレクトロニクス":"電子","バッテリー・エネルギー":"電池","包装・容器":"包装","食品":"食品",
+  "新素材・環境対応":"新素材","繊維・アパレル":"繊維","航空宇宙":"航空","半導体・精密製造":"半導体",
+  "化粧品・化成品":"化粧品","建材・住設":"建材","研究装置・ラボ":"研究"
+};
+const MATURITY_RANK = {実績寄り:3,検討余地:2,研究探索:1};
+const CLASS_OF = {実績寄り:"established",検討余地:"adjacent",研究探索:"exploratory"};
+const INDUSTRIES = [...new Set(APPS.map(r => r.industry))];
+const state = {industry:"すべて", method:"すべて", maturity:"すべて", query:""};
+
+function countBy(maturity){ return APPS.filter(r => r.maturity === maturity).length; }
+function cellRows(ind, method){ return APPS.filter(r => r.industry === ind && r.method === method); }
+function cellMaturity(rows){
+  if (!rows.length) return null;
+  return rows.reduce((best, row) => MATURITY_RANK[row.maturity] > MATURITY_RANK[best] ? row.maturity : best, rows[0].maturity);
+}
+function filtered(){
+  const q = state.query.trim().toLowerCase();
+  return APPS.filter(row => {
+    if (state.industry !== "すべて" && row.industry !== state.industry) return false;
+    if (state.method !== "すべて" && row.method !== state.method) return false;
+    if (state.maturity !== "すべて" && row.maturity !== state.maturity) return false;
+    if (!q) return true;
+    return [row.industry,row.application,row.method,row.materials,row.advantage].join(" ").toLowerCase().includes(q);
+  });
+}
+function pills(el, items, key){
+  el.innerHTML = "";
+  items.forEach(item => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "pill" + (state[key] === item ? " active" : "");
+    b.textContent = INDUSTRY_SHORT[item] || item;
+    b.addEventListener("click", () => { state[key] = item; render(); });
+    el.appendChild(b);
+  });
+}
+function renderStats(){
+  document.getElementById("stats").innerHTML = `
+    <div class="stat"><b>${APPS.length}</b><span>用途</span></div>
+    <div class="stat"><b>${INDUSTRIES.length}</b><span>業界</span></div>
+    <div class="stat green"><b>${countBy("実績寄り")}</b><span>実績寄り</span></div>
+    <div class="stat blue"><b>${countBy("検討余地")}</b><span>検討余地</span></div>
+    <div class="stat amber"><b>${countBy("研究探索")}</b><span>研究探索</span></div>`;
+}
+function renderMatrix(){
+  const root = document.getElementById("matrix-grid");
+  root.style.gridTemplateColumns = `76px repeat(${METHODS.length}, minmax(44px, 1fr))`;
+  let html = `<div></div>` + METHODS.map(m => `<div class="head">${METHOD_SHORT[m]}</div>`).join("");
+  INDUSTRIES.forEach(ind => {
+    html += `<button type="button" class="lab" data-industry="${ind}">${INDUSTRY_SHORT[ind]}</button>`;
+    METHODS.forEach(method => {
+      const rows = cellRows(ind, method);
+      const maturity = cellMaturity(rows);
+      const selected = state.industry === ind && state.method === method ? " selected" : "";
+      const klass = maturity ? CLASS_OF[maturity] : "empty";
+      const label = rows.length ? `${ind} × ${method} ${rows.length}件` : `${ind} × ${method}`;
+      html += `<button type="button" class="cell ${klass}${selected}" data-industry="${ind}" data-method="${method}" aria-label="${label}">${rows.length || ""}</button>`;
+    });
+  });
+  root.innerHTML = html;
+  root.querySelectorAll(".lab").forEach(btn => btn.addEventListener("click", () => {
+    state.industry = btn.dataset.industry;
+    state.method = "すべて";
+    state.maturity = "すべて";
+    render();
+  }));
+  root.querySelectorAll(".cell").forEach(btn => btn.addEventListener("click", () => {
+    state.industry = btn.dataset.industry;
+    state.method = btn.dataset.method;
+    state.maturity = "すべて";
+    render();
+    document.getElementById("list").scrollIntoView({behavior:"smooth", block:"start"});
+  }));
+  const detail = document.getElementById("cell-detail");
+  if (!detail) return;
+  if (state.industry !== "すべて" && state.method !== "すべて") {
+    const rows = cellRows(state.industry, state.method);
+    if (rows.length) {
+      detail.hidden = false;
+      detail.innerHTML = `<h3>${state.industry} × ${state.method}</h3><ul>${rows.map(r => `<li>${r.application}（${r.materials}）</li>`).join("")}</ul>`;
+    } else detail.hidden = true;
+  } else detail.hidden = true;
+}
+function renderBars(){
+  const rows = INDUSTRIES.map(ind => {
+    const list = APPS.filter(r => r.industry === ind);
+    return {
+      label: INDUSTRY_SHORT[ind],
+      established: list.filter(r => r.maturity === "実績寄り").length,
+      adjacent: list.filter(r => r.maturity === "検討余地").length,
+      exploratory: list.filter(r => r.maturity === "研究探索").length,
+      total: list.length
+    };
+  });
+  const max = Math.max(...rows.map(r => r.total));
+  document.getElementById("bars").innerHTML = rows.map(r => `
+    <div class="bar-row">
+      <div>${r.label}</div>
+      <div class="bar-track" title="${r.total}件">
+        <span class="established" style="width:${r.established/max*100}%"></span>
+        <span class="adjacent" style="width:${r.adjacent/max*100}%"></span>
+        <span class="exploratory" style="width:${r.exploratory/max*100}%"></span>
+      </div>
+      <div>${r.total}</div>
+    </div>`).join("");
+}
+function renderDonut(){
+  const data = [
+    {label:"実績寄り", value:countBy("実績寄り"), color:"#0b7a56"},
+    {label:"検討余地", value:countBy("検討余地"), color:"#0068b7"},
+    {label:"研究探索", value:countBy("研究探索"), color:"#9a6a00"}
+  ];
+  const total = data.reduce((s,d)=>s+d.value,0);
+  const cx=90, cy=90, r=62, ir=38;
+  let angle = -Math.PI/2;
+  const paths = data.map(d => {
+    const slice = d.value/total * Math.PI*2;
+    const a0 = angle, a1 = angle + slice; angle = a1;
+    const large = slice > Math.PI ? 1 : 0;
+    const x0=cx+r*Math.cos(a0), y0=cy+r*Math.sin(a0);
+    const x1=cx+r*Math.cos(a1), y1=cy+r*Math.sin(a1);
+    const ix0=cx+ir*Math.cos(a1), iy0=cy+ir*Math.sin(a1);
+    const ix1=cx+ir*Math.cos(a0), iy1=cy+ir*Math.sin(a0);
+    return `<path d="M ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1} L ${ix0} ${iy0} A ${ir} ${ir} 0 ${large} 0 ${ix1} ${iy1} Z" fill="${d.color}"/>`;
+  }).join("");
+  document.getElementById("donut").innerHTML = `
+    <svg width="180" height="180" viewBox="0 0 180 180" role="img" aria-label="成熟度の構成">
+      ${paths}
+      <text x="90" y="86" text-anchor="middle" font-size="18" font-weight="700" fill="#222">${total}</text>
+      <text x="90" y="104" text-anchor="middle" font-size="11" fill="#666">用途</text>
+    </svg>
+    <div class="donut-legend">${data.map(d => `${d.label} ${d.value}件`).join("　")}</div>`;
+}
+function renderTable(){
+  const rows = filtered();
+  document.getElementById("count").textContent = rows.length + " 件";
+  document.getElementById("tbody").innerHTML = rows.map(r => `
+    <tr>
+      <td>${r.industry}</td>
+      <td>${r.application}</td>
+      <td>${r.method}</td>
+      <td>${r.materials}</td>
+      <td>${r.advantage}</td>
+      <td><span class="dot ${CLASS_OF[r.maturity]}"></span>${r.maturity}</td>
+    </tr>`).join("");
+}
+function render(){
+  pills(document.getElementById("industry-filters"), ["すべて", ...INDUSTRIES], "industry");
+  pills(document.getElementById("method-filters"), ["すべて", ...METHODS], "method");
+  pills(document.getElementById("maturity-filters"), ["すべて","実績寄り","検討余地","研究探索"], "maturity");
+  renderMatrix();
+  renderTable();
+}
+renderStats();
+renderBars();
+renderDonut();
+document.getElementById("search").addEventListener("input", e => {
+  state.query = e.target.value;
+  renderTable();
+});
+render();
+</script>
+</body>
+</html>
